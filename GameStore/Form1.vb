@@ -6,6 +6,7 @@ Public Class Form1
     Dim dbpath = Application.StartupPath
     Dim dbname = "data.db"
     Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
+    Dim confirm_pass = ""
 
 
     Public Function MD5(ByVal strString As String) As String
@@ -106,12 +107,26 @@ Public Class Form1
                             End If
                         Next
                         If x > 0 Then
-                            MessageBox.Show("Registered")
-                            sql = "insert into Users (Username,Password,Auth) values (@username,@password,0)"
-                            Dim cmd2 As New SQLiteCommand(sql, conn)
-                            cmd2.Parameters.AddWithValue("username", TextBox1.Text)
-                            cmd2.Parameters.AddWithValue("password", MD5(TextBox2.Text))
-                            cmd2.ExecuteNonQuery()
+                            Dim confirm = New Confirm_Password
+
+                            confirm.ShowDialog()
+                            If confirm.confirm_pass <> TextBox2.Text Then
+
+                                MessageBox.Show("Password Not Match!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                            Else
+                                sql = "insert into Users (Username,Password,Auth) values (@username,@password,0)"
+                                Dim cmd2 As New SQLiteCommand(sql, conn)
+                                cmd2.Parameters.AddWithValue("username", TextBox1.Text)
+                                cmd2.Parameters.AddWithValue("password", MD5(TextBox2.Text))
+                                cmd2.ExecuteNonQuery()
+                                MessageBox.Show("Register Complete", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                TextBox1.Clear()
+                                TextBox2.Clear()
+
+
+                            End If
+
 
 
                         Else
@@ -144,4 +159,10 @@ Public Class Form1
         conn.Close()
 
     End Sub
+
+    Sub setConfirmPass(pass)
+        Me.confirm_pass = pass
+    End Sub
+
+
 End Class
