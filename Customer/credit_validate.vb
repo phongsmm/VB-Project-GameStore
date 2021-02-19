@@ -13,6 +13,7 @@ Public Class credit_validate
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
         Dim card_number = txtCardNumber.Text
         Dim expire_date = DateTimePicker1.Value.ToString("MM'/'yy")
+        Dim today = DateTime.Now.ToString("MM'/'yy")
         Dim scode = txtSCode.Text
         Dim firstname = txtFirstName.Text
         Dim lastname = txtLastName.Text
@@ -27,24 +28,28 @@ Public Class credit_validate
                 If scode.Length = 3 And IsNumeric(scode) Then
                     If IsNumeric(zipcode) Then
                         If phone.Length = 10 And IsNumeric(phone) Then
-                            conn.Open()
-                            Dim cmd As New SQLiteCommand
-                            cmd.Connection = conn
-                            cmd.CommandText = "UPDATE credentials SET card_number=@card_number,expire_date=@expire_date,scode=@scode,firstname=@firstname,lastname=@lastname,billing_address=@billing_address,country=@country,city=@city,zipcode=@zipcode,phone_number=@phone_number where username='" & lblUser.Text & "'"
-                            cmd.Parameters.AddWithValue("@card_number", card_number)
-                            cmd.Parameters.AddWithValue("@expire_date", expire_date)
-                            cmd.Parameters.AddWithValue("@scode", scode)
-                            cmd.Parameters.AddWithValue("@firstname", firstname)
-                            cmd.Parameters.AddWithValue("@lastname", lastname)
-                            cmd.Parameters.AddWithValue("@billing_address", bill)
-                            cmd.Parameters.AddWithValue("@country", country)
-                            cmd.Parameters.AddWithValue("@city", city)
-                            cmd.Parameters.AddWithValue("@zipcode", zipcode)
-                            cmd.Parameters.AddWithValue("@phone_number", phone)
-                            Dim recadded As Integer = cmd.ExecuteNonQuery()
-                            conn.Close()
-                            MsgBox(recadded & " Success validate!", MsgBoxStyle.Information)
-                            Me.Close()
+                            If today <> expire_date Then
+                                conn.Open()
+                                Dim cmd As New SQLiteCommand
+                                cmd.Connection = conn
+                                cmd.CommandText = "UPDATE credentials SET card_number=@card_number,expire_date=@expire_date,scode=@scode,firstname=@firstname,lastname=@lastname,billing_address=@billing_address,country=@country,city=@city,zipcode=@zipcode,phone_number=@phone_number where username='" & lblUser.Text & "'"
+                                cmd.Parameters.AddWithValue("@card_number", card_number)
+                                cmd.Parameters.AddWithValue("@expire_date", expire_date)
+                                cmd.Parameters.AddWithValue("@scode", scode)
+                                cmd.Parameters.AddWithValue("@firstname", firstname)
+                                cmd.Parameters.AddWithValue("@lastname", lastname)
+                                cmd.Parameters.AddWithValue("@billing_address", bill)
+                                cmd.Parameters.AddWithValue("@country", country)
+                                cmd.Parameters.AddWithValue("@city", city)
+                                cmd.Parameters.AddWithValue("@zipcode", zipcode)
+                                cmd.Parameters.AddWithValue("@phone_number", phone)
+                                Dim recadded As Integer = cmd.ExecuteNonQuery()
+                                conn.Close()
+                                MsgBox("Payment Information Added!", MsgBoxStyle.Information)
+                                Me.Close()
+                            Else
+                                MsgBox("invalid expired date")
+                            End If
                         Else
                             MsgBox("invalid phone number")
                         End If

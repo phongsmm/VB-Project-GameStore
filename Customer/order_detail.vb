@@ -5,16 +5,27 @@ Public Class order_detail
     Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
     Dim conn As New SQLiteConnection(constr)
     Private Sub order_detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim check_address = check_class.checK_address(txt_user)
         Dim email = check_class.get_email(txt_user)
         Dim user_id = check_class.getUserID(txt_user)
         Dim total = check_class.get_total_price(user_id)
-        Dim address = check_class.get_address(txt_user)
+        Dim address As String
         Dim price = check_class.get_price(user_id)
-        lblUser.Text = txt_user
-        lblEmail.Text = email
-        lblTotal.Text = price
-        lblHistoryPrice.Text = total
-        lblBillAddress.Text = address
+        If check_address = False Then
+            address = ""
+            lblUser.Text = txt_user
+            lblEmail.Text = email
+            lblTotal.Text = price
+            lblHistoryPrice.Text = total
+            lblBillAddress.Text = address
+        Else
+            address = check_class.get_address(txt_user)
+            lblUser.Text = txt_user
+            lblEmail.Text = email
+            lblTotal.Text = price
+            lblHistoryPrice.Text = total
+            lblBillAddress.Text = address
+        End If
         conn.Open()
         Dim cmd As New SQLiteCommand
         cmd.Connection = conn

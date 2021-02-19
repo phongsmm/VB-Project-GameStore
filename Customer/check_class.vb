@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SQLite
 Imports System.Text
+Imports System.Net.Mail
 Public Class check_class
     Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
     Dim conn As New SQLiteConnection(constr)
@@ -29,7 +30,6 @@ Public Class check_class
         conn.Open()
         Dim cmd As New SQLiteCommand
         Dim bool As Boolean
-        Dim db_user As String
         cmd.Connection = conn
         cmd.CommandText = "select username,card_number from credentials where username='" & user & "'"
         Dim reader As SQLiteDataReader = cmd.ExecuteReader()
@@ -41,6 +41,46 @@ Public Class check_class
             End If
         End While
         conn.Close()
+        Return bool
+    End Function
+
+    Function checK_address(user)
+        conn.Open()
+        Dim cmd As New SQLiteCommand
+        Dim bool As Boolean
+        cmd.Connection = conn
+        cmd.CommandText = "select username,billing_address from credentials where username='" & user & "'"
+        Dim reader As SQLiteDataReader = cmd.ExecuteReader()
+        While (reader.Read())
+            If IsDBNull(reader.GetValue("billing_address")) Then
+                bool = False
+            Else
+                bool = True
+            End If
+        End While
+        conn.Close()
+        Return bool
+    End Function
+
+    Function checK_email(email)
+        conn.Open()
+        Dim cmd As New SQLiteCommand
+        Dim bool As Boolean
+        Dim db_email As String
+        cmd.Connection = conn
+        cmd.CommandText = "select username,email from credentials"
+        Dim reader As SQLiteDataReader = cmd.ExecuteReader()
+        While (reader.Read())
+            If email = reader.GetValue("email") Then
+                db_email = reader.GetValue("email")
+            End If
+        End While
+        conn.Close()
+        If email = db_email Then
+            bool = True
+        Else
+            bool = False
+        End If
         Return bool
     End Function
 
@@ -141,6 +181,25 @@ Public Class check_class
         Return db_id
     End Function
 
+    Function getName(id)
+        conn.Open()
+        Dim cmd As New SQLiteCommand
+        Dim db_firstname As String
+        Dim db_lastname As String
+        cmd.Connection = conn
+        cmd.CommandText = "select id,firstname,lastname from credentials"
+        Dim reader As SQLiteDataReader = cmd.ExecuteReader()
+        While (reader.Read())
+            If id = reader.GetValue("id") Then
+                db_firstname = reader.GetValue("firstname")
+                db_lastname = reader.GetValue("lastname")
+            End If
+        End While
+        conn.Close()
+        Return db_firstname + " " + db_lastname
+    End Function
+
+
 
     Function get_address(user)
         conn.Open()
@@ -216,5 +275,36 @@ Public Class check_class
         Dim recadded As Integer = cmd.ExecuteNonQuery()
         conn.Close()
         MsgBox("Success Orders!", MsgBoxStyle.Information)
+    End Function
+
+    Function mail(invoice, order_date, fullname, address, email, key)
+        Try
+            Dim Smtp_Server As New SmtpClient
+            Dim e_mail As New MailMessage()
+            Smtp_Server.UseDefaultCredentials = False
+            Smtp_Server.Credentials = New Net.NetworkCredential("ibobbyvb@gmail.com", "T12345678")
+            Smtp_Server.Port = 587
+            Smtp_Server.EnableSsl = True
+            Smtp_Server.Host = "smtp.gmail.com"
+            Dim body As String = "YOUR ORDER IS COMPLETE" & vbNewLine &
+                                  "********************************************" & vbNewLine &
+                                 "ORDER NUMBER  : " & invoice & vbNewLine &
+                                 "THIS IS YOUR KEY GAME : " & key & vbNewLine &
+                                 "ORDER DATE : " & order_date & vbNewLine &
+                                 "Customer Name : " & fullname & vbNewLine &
+                                 "Billing Address " & vbNewLine & address & vbNewLine &
+                                 "********************************************"
+            e_mail = New MailMessage()
+            e_mail.From = New MailAddress("gamestorevb@gmail.com")
+            e_mail.To.Add(email)
+            e_mail.Subject = "Order confirmation " & invoice
+            e_mail.IsBodyHtml = False
+            e_mail.Body = body
+            Smtp_Server.Send(e_mail)
+            MsgBox("Mail Sent")
+
+        Catch error_t As Exception
+            MsgBox(error_t.ToString)
+        End Try
     End Function
 End Class

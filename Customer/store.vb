@@ -96,14 +96,20 @@ Public Class store
             order_price = 0
             If check_credit = True Then
                 check_class.insert_order(invoice, game, key, price, date_time, mail, userId)
-                lbOrders.Items.Clear()
+                Dim address = check_class.get_address(txt_user)
+                Dim fullname = check_class.getName(userId)
+                check_class.mail(invoice, date_time, fullname, address, mail, key)
                 Dim order_detail As New order_detail()
                 order_detail.txt_user = txt_user
                 order_detail.Show()
+                lbOrders.Items.Clear()
             Else
-                Dim validate As New credit_validate()
-                validate.txt_user = txt_user
-                validate.Show()
+                Dim msg = MessageBox.Show("Payment information was not found!" & vbNewLine & " Would you like to add payment information?", "Payment Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If msg = DialogResult.Yes Then
+                    Dim validate As New credit_validate()
+                    validate.txt_user = txt_user
+                    validate.Show()
+                End If
             End If
         Else
             MsgBox("Please Select Your Game Before Purchase...")

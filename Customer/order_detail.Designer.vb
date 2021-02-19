@@ -29,14 +29,14 @@ Partial Class order_detail
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblHistoryPrice = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.lblBillAddress = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblTotal = New System.Windows.Forms.Label()
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.lblHistoryPrice = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -116,6 +116,24 @@ Partial Class order_detail
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Customer Information"
         '
+        'lblHistoryPrice
+        '
+        Me.lblHistoryPrice.AutoSize = True
+        Me.lblHistoryPrice.Location = New System.Drawing.Point(269, 57)
+        Me.lblHistoryPrice.Name = "lblHistoryPrice"
+        Me.lblHistoryPrice.Size = New System.Drawing.Size(31, 15)
+        Me.lblHistoryPrice.TabIndex = 13
+        Me.lblHistoryPrice.Text = "total"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(178, 57)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(92, 15)
+        Me.Label8.TabIndex = 12
+        Me.Label8.Text = "Total Purchase : "
+        '
         'lblBillAddress
         '
         Me.lblBillAddress.Location = New System.Drawing.Point(54, 111)
@@ -153,11 +171,17 @@ Partial Class order_detail
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(31, 178)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowTemplate.Height = 25
         Me.DataGridView1.Size = New System.Drawing.Size(346, 122)
         Me.DataGridView1.TabIndex = 10
@@ -170,24 +194,6 @@ Partial Class order_detail
         Me.Button1.TabIndex = 11
         Me.Button1.Text = "BACK"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'lblHistoryPrice
-        '
-        Me.lblHistoryPrice.AutoSize = True
-        Me.lblHistoryPrice.Location = New System.Drawing.Point(269, 57)
-        Me.lblHistoryPrice.Name = "lblHistoryPrice"
-        Me.lblHistoryPrice.Size = New System.Drawing.Size(31, 15)
-        Me.lblHistoryPrice.TabIndex = 13
-        Me.lblHistoryPrice.Text = "total"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(178, 57)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(92, 15)
-        Me.Label8.TabIndex = 12
-        Me.Label8.Text = "Total Purchase : "
         '
         'order_detail
         '

@@ -5,6 +5,7 @@ Imports System.Text.RegularExpressions
 Public Class register
     Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
     Dim conn As New SQLiteConnection(constr)
+    Dim check_class As New check_class
 
     Function check_user(user)
         Dim bool As Boolean
@@ -51,19 +52,27 @@ Public Class register
             If txtPass.Text = txtConPass.Text Then
                 If chk = False Then
                     If chk_mail = True Then
-                        conn.Open()
-                        password = txtPass.Text
-                        Dim cmd As New SQLiteCommand
-                        cmd.Connection = conn
-                        cmd.CommandText = "INSERT INTO credentials(username,password,email,privilege)" &
-                                    "VALUES (@username,@password,@email,@privilege)"
-                        cmd.Parameters.AddWithValue("@username", username)
-                        cmd.Parameters.AddWithValue("@password", password)
-                        cmd.Parameters.AddWithValue("@email", email)
-                        cmd.Parameters.AddWithValue("@privilege", privilege)
-                        Dim recadded As Integer = cmd.ExecuteNonQuery()
-                        conn.Close()
-                        MsgBox(recadded & " Success Registered!", MsgBoxStyle.Information)
+                        If check_class.checK_email(email) = False Then
+                            conn.Open()
+                            password = txtPass.Text
+                            Dim cmd As New SQLiteCommand
+                            cmd.Connection = conn
+                            cmd.CommandText = "INSERT INTO credentials(username,password,email,privilege)" &
+                                        "VALUES (@username,@password,@email,@privilege)"
+                            cmd.Parameters.AddWithValue("@username", username)
+                            cmd.Parameters.AddWithValue("@password", password)
+                            cmd.Parameters.AddWithValue("@email", email)
+                            cmd.Parameters.AddWithValue("@privilege", privilege)
+                            Dim recadded As Integer = cmd.ExecuteNonQuery()
+                            conn.Close()
+                            MsgBox(" Success Registered!", MsgBoxStyle.Information)
+                            Dim Form1 As New Form1()
+                            Form1.Show()
+                            Me.Close()
+                        Else
+                            MessageBox.Show("
+This email has already been used.")
+                        End If
                     Else
                         MessageBox.Show("Your email address is invalid")
                     End If
