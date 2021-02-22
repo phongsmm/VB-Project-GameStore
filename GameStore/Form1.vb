@@ -4,9 +4,12 @@ Imports System.Text
 
 Public Class Form1
     Dim dbpath = Application.StartupPath
-    Dim dbname = "data.db"
+    Dim dbname = "Data.db"
     Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
-    Dim confirm_pass = ""
+    Dim conn As New SqliteConnection(constr)
+    Dim db_user As String
+
+
 
 
     Public Function MD5(ByVal strString As String) As String
@@ -20,148 +23,53 @@ Public Class Form1
         Next
         Return strReturn
     End Function
+    Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+        Dim register As New register()
+        register.Show()
+        Me.Close()
 
+    End Sub
 
+    Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
+        conn.Open()
+        Dim user = txtBoxUser.Text
+        Dim pass = MD5(txtBoxPass.Text)
+        Dim db_user As String
+        Dim db_pass As String
+        Dim auth As String
+        Dim cmd As New SqliteCommand
+        cmd.Connection = conn
+        cmd.CommandText = "select username,password,privilege from credentials"
+        Dim reader As SQLiteDataReader = cmd.ExecuteReader()
+        While (reader.Read())
+            If user = reader.GetValue(0) Then
+                If pass = reader.GetValue(1) Then
+                    db_user = reader.GetValue(0)
+                    db_pass = reader.GetValue(1)
+                    auth = reader.GetValue(2)
+                End If
+            End If
+        End While
+        conn.Close()
+
+        If user = db_user And pass = db_pass And auth = "Customer" Then
+            Dim home As New home()
+            home.txt_user = db_user
+            home.Show()
+            Me.Close()
+        ElseIf user = db_user And pass = db_pass And auth = "Admin" Then
+            Dim admin As New Admin()
+            admin.Show()
+            Me.Close()
+
+        Else
+            MessageBox.Show("Username/Password incorrect", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
-        Dim conn As New SQLiteConnection(constr)
-        conn.Open()
-
-        Try
-            Dim sql As String = "select * from Users Where Username = @name And Password = @password"
-            Dim cmd As New SQLiteCommand(sql, conn)
-            cmd.Parameters.AddWithValue("name", TextBox1.Text)
-            cmd.Parameters.AddWithValue("password", MD5(TextBox2.Text))
-            Dim reader As SQLiteDataReader = cmd.ExecuteReader
-
-            If Not reader.HasRows Then
-                MessageBox.Show("Invalid Username or Password", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
-
-
-            While reader.Read
-                If reader(3) = 0 Then
-                    ''Guest
-
-                ElseIf reader(3) = 1 Then
-                    ''Admin
-
-
-                End If
-
-
-            End While
-
-
-        Catch ex As Exception
-            MessageBox.Show("Connection Lost!")
-
-        End Try
-
-
-
-
-
-        conn.Close()
-    End Sub
-
-    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            TextBox2.Focus()
-        End If
-
-    End Sub
-
-    Private Sub TextBox2_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox2.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            Button2.PerformClick()
-        End If
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        Dim conn As New SQLiteConnection(constr)
-        conn.Open()
-
-        Try
-            Dim sql As String = "select * from Users Where Username = @name"
-            Dim cmd As New SQLiteCommand(sql, conn)
-            cmd.Parameters.AddWithValue("name", TextBox1.Text)
-
-            Dim reader As SQLiteDataReader = cmd.ExecuteReader
-
-            If reader.HasRows Then
-                MessageBox.Show("This Username has already used!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Else
-                If TextBox1.Text.Length > 2 Then
-                    If TextBox2.Text.Length > 5 Then
-                        Dim x = 0
-                        For Each A In TextBox2.Text
-                            If IsNumeric(A) Then
-                                x += 1
-                            End If
-                        Next
-                        If x > 0 Then
-                            Dim confirm = New Confirm_Password
-
-                            confirm.ShowDialog()
-                            If confirm.confirm_pass <> TextBox2.Text Then
-
-                                MessageBox.Show("Password Not Match!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
-                            Else
-                                sql = "insert into Users (Username,Password,Auth) values (@username,@password,0)"
-                                Dim cmd2 As New SQLiteCommand(sql, conn)
-                                cmd2.Parameters.AddWithValue("username", TextBox1.Text)
-                                cmd2.Parameters.AddWithValue("password", MD5(TextBox2.Text))
-                                cmd2.ExecuteNonQuery()
-                                MessageBox.Show("Register Complete", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                TextBox1.Clear()
-                                TextBox2.Clear()
-
-
-                            End If
-
-
-
-                        Else
-                            MessageBox.Show("Password must contain number at least 1 character ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
-                        End If
-
-                    Else
-
-                        MessageBox.Show("Password require at least 6 character", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
-                    End If
-                Else
-                    MessageBox.Show("Username require at least 3 character", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
-
-            End If
-
-
-
-        Catch ex As Exception
-            MessageBox.Show("Connection Lost!")
-
-        End Try
-
-
-
-
-
-        conn.Close()
-
-    End Sub
-
-    Sub setConfirmPass(pass)
-        Me.confirm_pass = pass
     End Sub
 
 
