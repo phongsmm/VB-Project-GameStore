@@ -2,7 +2,9 @@
 Public Class order_detail
     Public Property txt_user As String
     Dim check_class As New check_class
-    Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
+    Dim dbpath = Application.StartupPath
+    Dim dbname = "data.db"
+    Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
     Dim conn As New SQLiteConnection(constr)
     Private Sub order_detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim check_address = check_class.checK_address(txt_user)

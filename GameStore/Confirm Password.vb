@@ -1,9 +1,6 @@
 ﻿Public Class Confirm_Password
 
     Public confirm_pass As String = ""
-    Private Sub Confirm_Password_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

@@ -33,6 +33,7 @@ Partial Class register
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label2
@@ -81,6 +82,7 @@ Partial Class register
         '
         Me.txtPass.Location = New System.Drawing.Point(158, 188)
         Me.txtPass.Name = "txtPass"
+        Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPass.Size = New System.Drawing.Size(108, 23)
         Me.txtPass.TabIndex = 12
         '
@@ -97,6 +99,7 @@ Partial Class register
         '
         Me.txtConPass.Location = New System.Drawing.Point(158, 232)
         Me.txtConPass.Name = "txtConPass"
+        Me.txtConPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtConPass.Size = New System.Drawing.Size(108, 23)
         Me.txtConPass.TabIndex = 14
         '
@@ -127,11 +130,22 @@ Partial Class register
         Me.Button2.Text = "CANCEL"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(273, 188)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(33, 23)
+        Me.Button3.TabIndex = 18
+        Me.Button3.Text = "👁‍"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'register
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(383, 372)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
@@ -162,4 +176,5 @@ Partial Class register
     Friend WithEvents Label4 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

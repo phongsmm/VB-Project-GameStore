@@ -29,6 +29,7 @@ Partial Class Form1
         Me.txtBoxPass = New System.Windows.Forms.TextBox()
         Me.txtBoxUser = New System.Windows.Forms.TextBox()
         Me.btnLogin = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label2
@@ -72,6 +73,7 @@ Partial Class Form1
         '
         Me.txtBoxPass.Location = New System.Drawing.Point(203, 157)
         Me.txtBoxPass.Name = "txtBoxPass"
+        Me.txtBoxPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtBoxPass.Size = New System.Drawing.Size(108, 23)
         Me.txtBoxPass.TabIndex = 8
         '
@@ -91,11 +93,22 @@ Partial Class Form1
         Me.btnLogin.Text = "LOGIN"
         Me.btnLogin.UseVisualStyleBackColor = True
         '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(317, 157)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(33, 23)
+        Me.Button3.TabIndex = 19
+        Me.Button3.Text = "👁‍"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(471, 312)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.btnLogin)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btnRegister)
@@ -118,4 +131,5 @@ Partial Class Form1
     Friend WithEvents txtBoxPass As TextBox
     Friend WithEvents txtBoxUser As TextBox
     Friend WithEvents btnLogin As Button
+    Friend WithEvents Button3 As Button
 End Class

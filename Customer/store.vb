@@ -8,7 +8,9 @@ Public Class store
     Dim order_key As String
     Dim game_name
     Dim game_price
-    Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
+    Dim dbpath = Application.StartupPath
+    Dim dbname = "data.db"
+    Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
     Dim conn As New SQLiteConnection(constr)
     Dim db_user As String
     Private Sub store_Load(sender As Object, e As EventArgs) Handles MyBase.Load

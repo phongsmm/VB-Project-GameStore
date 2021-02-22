@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2015\\source\\repos\\Customer\\Customer\\Customer.vbproj": {}
+    "C:\\Users\\Phos\\source\\repos\\GameStore\\Customer\\Customer.vbproj": {}
   },
   "projects": {
-    "C:\\Users\\2015\\source\\repos\\Customer\\Customer\\Customer.vbproj": {
+    "C:\\Users\\Phos\\source\\repos\\GameStore\\Customer\\Customer.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2015\\source\\repos\\Customer\\Customer\\Customer.vbproj",
+        "projectUniqueName": "C:\\Users\\Phos\\source\\repos\\GameStore\\Customer\\Customer.vbproj",
         "projectName": "Customer",
-        "projectPath": "C:\\Users\\2015\\source\\repos\\Customer\\Customer\\Customer.vbproj",
-        "packagesPath": "C:\\Users\\2015\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2015\\source\\repos\\Customer\\Customer\\obj\\",
+        "projectPath": "C:\\Users\\Phos\\source\\repos\\GameStore\\Customer\\Customer.vbproj",
+        "packagesPath": "C:\\Users\\Phos\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Phos\\source\\repos\\GameStore\\Customer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\2015\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Phos\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

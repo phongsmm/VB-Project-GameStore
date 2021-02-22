@@ -1,9 +1,13 @@
 ﻿
 Imports System.Data.SQLite
 Imports System.Text.RegularExpressions
+Imports System.Security.Cryptography
+Imports System.Text
 
 Public Class register
-    Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
+    Dim dbpath = Application.StartupPath
+    Dim dbname = "data.db"
+    Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
     Dim conn As New SQLiteConnection(constr)
     Dim check_class As New check_class
 
@@ -30,7 +34,7 @@ Public Class register
         Return bool
     End Function
 
-    Function EmailAddressCheck(ByVal emailAddress As String) As Boolean
+    Function EmailAddressCheck(emailAddress As String) As Boolean
         Dim pattern As String = "^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"
         Dim emailAddressMatch As Match = Regex.Match(emailAddress, pattern)
         If emailAddressMatch.Success Then
@@ -40,6 +44,19 @@ Public Class register
         End If
 
     End Function
+
+    Public Function MD5(ByVal strString As String) As String
+        Dim ASCIIenc As New ASCIIEncoding
+        Dim strReturn As String
+        Dim ByteSourceText() As Byte = ASCIIenc.GetBytes(strString)
+        Dim Md5Hash As New MD5CryptoServiceProvider
+        Dim ByteHash() As Byte = Md5Hash.ComputeHash(ByteSourceText)
+        For Each b As Byte In ByteHash
+            strReturn = strReturn & b.ToString("x2")
+        Next
+        Return strReturn
+    End Function
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim username = txtUser.Text
@@ -60,7 +77,7 @@ Public Class register
                             cmd.CommandText = "INSERT INTO credentials(username,password,email,privilege)" &
                                         "VALUES (@username,@password,@email,@privilege)"
                             cmd.Parameters.AddWithValue("@username", username)
-                            cmd.Parameters.AddWithValue("@password", password)
+                            cmd.Parameters.AddWithValue("@password", MD5(password))
                             cmd.Parameters.AddWithValue("@email", email)
                             cmd.Parameters.AddWithValue("@privilege", privilege)
                             Dim recadded As Integer = cmd.ExecuteNonQuery()
@@ -77,13 +94,13 @@ This email has already been used.")
                         MessageBox.Show("Your email address is invalid")
                     End If
                 Else
-                    MessageBox.Show("This username has already inuse")
+                    MessageBox.Show("This username has already inuse", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Else
-                MessageBox.Show("Password incorrect")
+                MessageBox.Show("Password Not Match!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         Else
-            MessageBox.Show("Please inform all")
+            MessageBox.Show("Please inform all", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -93,4 +110,19 @@ This email has already been used.")
         Me.Close()
     End Sub
 
+    Private Sub register_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If txtPass.PasswordChar = "*" Then
+            txtPass.PasswordChar = ""
+            txtConPass.PasswordChar = ""
+            Button3.BackColor = Color.DimGray
+        Else
+            txtPass.PasswordChar = "*"
+            txtConPass.PasswordChar = "*"
+            Button3.BackColor = Color.White
+        End If
+    End Sub
 End Class

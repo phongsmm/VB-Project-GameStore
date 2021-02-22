@@ -2,7 +2,9 @@
 Imports System.Text
 Imports System.Net.Mail
 Public Class check_class
-    Dim constr As New SQLiteConnection("Data Source=C:\Users\2015\source\repos\Customer\Customer\Data.db;")
+    Dim dbpath = Application.StartupPath
+    Dim dbname = "data.db"
+    Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
     Dim conn As New SQLiteConnection(constr)
     Function check_user(user)
         Dim bool As Boolean
