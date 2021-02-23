@@ -68,7 +68,7 @@ Partial Class store
         Me.txtSearch.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
         Me.txtSearch.CustomButton.UseSelectable = True
         Me.txtSearch.CustomButton.Visible = False
-        Me.txtSearch.Lines = New String() {"MetroTextBox1"}
+        Me.txtSearch.Lines = New String(-1) {}
         Me.txtSearch.Location = New System.Drawing.Point(238, 75)
         Me.txtSearch.MaxLength = 32767
         Me.txtSearch.Name = "txtSearch"
@@ -80,7 +80,6 @@ Partial Class store
         Me.txtSearch.ShortcutsEnabled = True
         Me.txtSearch.Size = New System.Drawing.Size(142, 30)
         Me.txtSearch.TabIndex = 2
-        Me.txtSearch.Text = "MetroTextBox1"
         Me.txtSearch.UseSelectable = True
         Me.txtSearch.WaterMarkColor = System.Drawing.Color.FromArgb(CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(109, Byte), Integer))
         Me.txtSearch.WaterMarkFont = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel)

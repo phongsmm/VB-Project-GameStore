@@ -28,3 +28,5 @@ C:\Users\Phos\source\repos\GameStore\GameStore\bin\Debug\System.Data.SQLite.EF6.
 C:\Users\Phos\source\repos\GameStore\GameStore\bin\Debug\System.Data.SQLite.Linq.dll
 C:\Users\Phos\source\repos\GameStore\GameStore\bin\Debug\System.Data.SQLite.xml
 C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.Admin.resources
+C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.EditCustomer.resources
+C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.EditGame.resources
