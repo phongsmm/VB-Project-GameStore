@@ -32,7 +32,7 @@ Public Class EditGame
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If tb_name.Text <> "" And tb_price.Text <> "" And tb_cat.SelectedIndex <> -1 Then
+        If tb_name.Text <> "" And tb_price.Text <> "" And tb_cat.Text <> "" Then
             If Not IsNumeric(tb_price.Text) Then
                 MessageBox.Show("Price must be numberic", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
@@ -42,23 +42,23 @@ Public Class EditGame
                 Return
             End If
             conn.Open()
-                Dim cmd As New SQLiteCommand
-                cmd.Connection = conn
-                cmd.CommandText = String.Format("
+            Dim cmd As New SQLiteCommand
+            cmd.Connection = conn
+            cmd.CommandText = String.Format("
 UPDATE game
 SET game = @name, category = @cat , price = @price
 WHERE id = '{0}'
 ", id)
-                cmd.Parameters.AddWithValue("@name", tb_name.Text)
-                cmd.Parameters.AddWithValue("@cat", tb_cat.SelectedItem)
-                cmd.Parameters.AddWithValue("@price", CDbl(tb_price.Text))
+            cmd.Parameters.AddWithValue("@name", tb_name.Text)
+            cmd.Parameters.AddWithValue("@cat", tb_cat.Text)
+            cmd.Parameters.AddWithValue("@price", CDbl(tb_price.Text))
 
-                cmd.ExecuteNonQuery()
-                conn.Close()
-                MessageBox.Show("Update Successful", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Me.Close()
-            Else
-                MessageBox.Show("Please Fill All Of The Data", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cmd.ExecuteNonQuery()
+            conn.Close()
+            MessageBox.Show("Update Successful", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.Close()
+        Else
+            MessageBox.Show("Please Fill All Of The Data", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -78,5 +78,37 @@ WHERE id = '{0}'
             MessageBox.Show("Delete Successful", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Me.Close()
         End If
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        If tb_name.Text <> "" And tb_price.Text <> "" And tb_cat.Text <> "" Then
+            If Not IsNumeric(tb_price.Text) Then
+                MessageBox.Show("Price must be numberic", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            If CDbl(tb_price.Text < 0) Then
+                MessageBox.Show("Price must more than Zero", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            conn.Open()
+            Dim cmd As New SQLiteCommand
+            cmd.Connection = conn
+            cmd.CommandText = "INSERT INTO game (game, category, price)
+VALUES (@name, @cat, @price)"
+            cmd.Parameters.AddWithValue("@name", tb_name.Text)
+            cmd.Parameters.AddWithValue("@cat", tb_cat.Text)
+            cmd.Parameters.AddWithValue("@price", CDbl(tb_price.Text))
+
+            cmd.ExecuteNonQuery()
+            conn.Close()
+            MessageBox.Show("Insert Successful", "Sucess!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.Close()
+        Else
+            MessageBox.Show("Please Fill All Of The Data", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub tb_cat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tb_cat.SelectedIndexChanged
+
     End Sub
 End Class

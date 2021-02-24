@@ -72,5 +72,9 @@ Public Class Form1
 
     End Sub
 
-
+    Private Sub txtBoxPass_KeyDown(sender As Object, e As KeyEventArgs) Handles txtBoxPass.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            btnLogin_Click(sender, e)
+        End If
+    End Sub
 End Class

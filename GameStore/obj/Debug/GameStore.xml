@@ -32,6 +32,11 @@ GameStore
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:GameStore.My.Resources.Resources.GameStore">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:GameStore.My.Resources.Resources.search">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

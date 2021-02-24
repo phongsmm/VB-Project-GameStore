@@ -22,6 +22,7 @@ Partial Class EditCustomer
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditCustomer))
         Me.tb_name = New MetroFramework.Controls.MetroTextBox()
         Me.tb_pass = New MetroFramework.Controls.MetroTextBox()
         Me.tb_p = New MetroFramework.Controls.MetroTextBox()
@@ -187,6 +188,7 @@ Partial Class EditCustomer
         Me.Controls.Add(Me.tb_p)
         Me.Controls.Add(Me.tb_pass)
         Me.Controls.Add(Me.tb_name)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "EditCustomer"
         Me.Resizable = False
         Me.Text = "EDIT - USER"

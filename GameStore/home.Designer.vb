@@ -22,6 +22,7 @@ Partial Class home
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(home))
         Me.btnStore = New MetroFramework.Controls.MetroButton()
         Me.Button2 = New MetroFramework.Controls.MetroButton()
         Me.MetroButton4 = New MetroFramework.Controls.MetroButton()
@@ -89,6 +90,7 @@ Partial Class home
         Me.Controls.Add(Me.MetroButton3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.btnStore)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "home"
         Me.Resizable = False
         Me.Text = "Home Page"

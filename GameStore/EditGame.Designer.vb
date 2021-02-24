@@ -22,14 +22,16 @@ Partial Class EditGame
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditGame))
         Me.tb_name = New MetroFramework.Controls.MetroTextBox()
         Me.tb_price = New MetroFramework.Controls.MetroTextBox()
         Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
         Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
-        Me.tb_cat = New MetroFramework.Controls.MetroComboBox()
         Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.tb_cat = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'tb_name
@@ -110,16 +112,6 @@ Partial Class EditGame
         Me.MetroLabel3.TabIndex = 5
         Me.MetroLabel3.Text = "Price"
         '
-        'tb_cat
-        '
-        Me.tb_cat.FormattingEnabled = True
-        Me.tb_cat.ItemHeight = 23
-        Me.tb_cat.Location = New System.Drawing.Point(58, 169)
-        Me.tb_cat.Name = "tb_cat"
-        Me.tb_cat.Size = New System.Drawing.Size(199, 29)
-        Me.tb_cat.TabIndex = 6
-        Me.tb_cat.UseSelectable = True
-        '
         'MetroLabel2
         '
         Me.MetroLabel2.AutoSize = True
@@ -135,7 +127,7 @@ Partial Class EditGame
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button2.Location = New System.Drawing.Point(182, 304)
+        Me.Button2.Location = New System.Drawing.Point(200, 304)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 31)
         Me.Button2.TabIndex = 9
@@ -147,26 +139,49 @@ Partial Class EditGame
         Me.Button1.BackColor = System.Drawing.Color.Gold
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(54, 304)
+        Me.Button1.Location = New System.Drawing.Point(120, 304)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 31)
         Me.Button1.TabIndex = 8
         Me.Button1.Text = "Update"
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.LimeGreen
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(39, 304)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 31)
+        Me.Button3.TabIndex = 10
+        Me.Button3.Text = "ADD"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'tb_cat
+        '
+        Me.tb_cat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tb_cat.FormattingEnabled = True
+        Me.tb_cat.Location = New System.Drawing.Point(58, 178)
+        Me.tb_cat.Name = "tb_cat"
+        Me.tb_cat.Size = New System.Drawing.Size(199, 24)
+        Me.tb_cat.TabIndex = 11
+        '
         'EditGame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(321, 450)
+        Me.ClientSize = New System.Drawing.Size(312, 450)
+        Me.Controls.Add(Me.tb_cat)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MetroLabel2)
-        Me.Controls.Add(Me.tb_cat)
         Me.Controls.Add(Me.MetroLabel3)
         Me.Controls.Add(Me.MetroLabel1)
         Me.Controls.Add(Me.tb_price)
         Me.Controls.Add(Me.tb_name)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "EditGame"
         Me.Resizable = False
         Me.Text = "EDIT - GAME"
@@ -179,8 +194,9 @@ Partial Class EditGame
     Friend WithEvents tb_price As MetroFramework.Controls.MetroTextBox
     Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
     Friend WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents tb_cat As MetroFramework.Controls.MetroComboBox
     Friend WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents tb_cat As ComboBox
 End Class

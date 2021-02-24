@@ -22,6 +22,7 @@ Partial Class store
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(store))
         Me.cboCategory = New MetroFramework.Controls.MetroComboBox()
         Me.lblUser = New MetroFramework.Controls.MetroLabel()
         Me.txtSearch = New MetroFramework.Controls.MetroTextBox()
@@ -158,6 +159,7 @@ Partial Class store
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblUser)
         Me.Controls.Add(Me.cboCategory)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "store"
         Me.Resizable = False
         Me.Text = "GameStore"

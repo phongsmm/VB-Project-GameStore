@@ -22,6 +22,7 @@ Partial Class order_detail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(order_detail))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblUser = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -206,6 +207,7 @@ Partial Class order_detail
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lblUser)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "order_detail"
         Me.Padding = New System.Windows.Forms.Padding(17, 60, 17, 17)
         Me.Resizable = False

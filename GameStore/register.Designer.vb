@@ -22,6 +22,7 @@ Partial Class register
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(register))
         Me.txtUser = New MetroFramework.Controls.MetroTextBox()
         Me.txtMail = New MetroFramework.Controls.MetroTextBox()
         Me.txtPass = New MetroFramework.Controls.MetroTextBox()
@@ -245,6 +246,7 @@ Partial Class register
         Me.Controls.Add(Me.txtPass)
         Me.Controls.Add(Me.txtMail)
         Me.Controls.Add(Me.txtUser)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "register"
         Me.Resizable = False
         Me.Text = "Game Store  - Register"

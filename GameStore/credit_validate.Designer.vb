@@ -22,6 +22,7 @@ Partial Class credit_validate
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(credit_validate))
         Me.txtCardNumber = New System.Windows.Forms.TextBox()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -281,8 +282,9 @@ Partial Class credit_validate
         Me.Controls.Add(Me.btnCancle)
         Me.Controls.Add(Me.btnConfirm)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "credit_validate"
-        Me.Padding = New System.Windows.Forms.Padding(17, 52, 17, 17)
+        Me.Padding = New System.Windows.Forms.Padding(17, 60, 17, 17)
         Me.Text = "validate"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

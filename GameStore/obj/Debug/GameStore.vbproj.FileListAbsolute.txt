@@ -30,3 +30,8 @@ C:\Users\Phos\source\repos\GameStore\GameStore\bin\Debug\System.Data.SQLite.xml
 C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.Admin.resources
 C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.EditCustomer.resources
 C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.EditGame.resources
+C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.Splash.resources
+C:\Users\Phos\source\repos\GameStore\GameStore\bin\Debug\GameStore.exe.manifest
+C:\Users\Phos\source\repos\GameStore\GameStore\bin\Debug\GameStore.application
+C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.exe.manifest
+C:\Users\Phos\source\repos\GameStore\GameStore\obj\Debug\GameStore.application
