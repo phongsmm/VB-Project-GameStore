@@ -303,8 +303,6 @@ Public Class check_class
             e_mail.IsBodyHtml = False
             e_mail.Body = body
             Smtp_Server.Send(e_mail)
-            MsgBox("Mail Sent")
-
         Catch error_t As Exception
             MsgBox(error_t.ToString)
         End Try
