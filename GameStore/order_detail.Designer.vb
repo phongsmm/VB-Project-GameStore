@@ -23,11 +23,9 @@ Partial Class order_detail
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(order_detail))
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.lblUser = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblHistoryPrice = New System.Windows.Forms.Label()
@@ -38,25 +36,16 @@ Partial Class order_detail
         Me.lblEmail = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button1 = New MetroFramework.Controls.MetroButton()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Sitka Text", 26.25!)
-        Me.Label1.Location = New System.Drawing.Point(29, 24)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(109, 50)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Hello"
         '
         'lblUser
         '
         Me.lblUser.AutoSize = True
         Me.lblUser.Font = New System.Drawing.Font("Sitka Text", 26.25!)
-        Me.lblUser.Location = New System.Drawing.Point(128, 24)
+        Me.lblUser.Location = New System.Drawing.Point(126, 60)
         Me.lblUser.Name = "lblUser"
         Me.lblUser.Size = New System.Drawing.Size(182, 50)
         Me.lblUser.TabIndex = 1
@@ -79,15 +68,6 @@ Partial Class order_detail
         Me.Label5.Size = New System.Drawing.Size(89, 13)
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Last Order Price :"
-        '
-        'Label7
-        '
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.Label7.Location = New System.Drawing.Point(27, 74)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(301, 50)
-        Me.Label7.TabIndex = 7
-        Me.Label7.Text = "Your CD-KEY have been add to your email address"
         '
         'Label6
         '
@@ -195,18 +175,27 @@ Partial Class order_detail
         Me.Button1.Text = "CLOSE"
         Me.Button1.UseSelectable = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Sitka Text", 26.25!)
+        Me.Label1.Location = New System.Drawing.Point(26, 60)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(109, 50)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Hello"
+        '
         'order_detail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(354, 471)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lblUser)
-        Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "order_detail"
         Me.Padding = New System.Windows.Forms.Padding(17, 60, 17, 17)
@@ -219,12 +208,9 @@ Partial Class order_detail
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Label1 As Label
     Friend WithEvents lblUser As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DataGridView1 As DataGridView
@@ -235,4 +221,5 @@ Partial Class order_detail
     Friend WithEvents lblHistoryPrice As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Button1 As MetroFramework.Controls.MetroButton
+    Friend WithEvents Label1 As Label
 End Class
