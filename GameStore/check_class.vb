@@ -284,7 +284,7 @@ Public Class check_class
             Dim Smtp_Server As New SmtpClient
             Dim e_mail As New MailMessage()
             Smtp_Server.UseDefaultCredentials = False
-            Smtp_Server.Credentials = New Net.NetworkCredential("ibobbyvb@gmail.com", "T12345678")
+            Smtp_Server.Credentials = New Net.NetworkCredential("gamestoredemoforvb@gmail.com", "gstoredemo123")
             Smtp_Server.Port = 587
             Smtp_Server.EnableSsl = True
             Smtp_Server.Host = "smtp.gmail.com"
@@ -293,11 +293,11 @@ Public Class check_class
                                  "ORDER NUMBER  : " & invoice & vbNewLine &
                                  "THIS IS YOUR KEY GAME : " & key & vbNewLine &
                                  "ORDER DATE : " & order_date & vbNewLine &
-                                 "Customer Name : " & fullname & vbNewLine &
-                                 "Billing Address " & vbNewLine & address & vbNewLine &
+                                 "CUSTOMER NAME : " & fullname & vbNewLine &
+                                 "BILLING ADDRESS " & vbNewLine & address & vbNewLine &
                                  "********************************************"
             e_mail = New MailMessage()
-            e_mail.From = New MailAddress("gamestorevb@gmail.com")
+            e_mail.From = New MailAddress("gstoredemo123@gmail.com")
             e_mail.To.Add(email)
             e_mail.Subject = "Order confirmation " & invoice
             e_mail.IsBodyHtml = False
@@ -306,5 +306,15 @@ Public Class check_class
         Catch error_t As Exception
             MsgBox(error_t.ToString)
         End Try
+    End Function
+
+    Public Function CountCharacter(ByVal value As String, ByVal ch As Char) As Integer
+        Dim cnt As Integer = 0
+        For Each c As Char In value
+            If c = ch Then
+                cnt += 1
+            End If
+        Next
+        Return cnt
     End Function
 End Class

@@ -122,4 +122,8 @@ This email has already been used.")
             Button3.BackColor = Color.White
         End If
     End Sub
+
+    Private Sub register_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

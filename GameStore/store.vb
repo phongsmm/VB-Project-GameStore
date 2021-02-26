@@ -1,5 +1,7 @@
 ﻿Imports System.Data.SQLite
 Imports System.Net.Mail
+Imports System.Text.RegularExpressions
+
 Public Class store
     Public Property txt_user As String
     Dim check_class As New check_class
@@ -98,7 +100,7 @@ Public Class store
             order_price = 0
             If check_credit = True Then
                 check_class.insert_order(invoice, game, key, price, date_time, mail, userId)
-                Dim address = check_class.get_address(txt_user)
+                Dim address = check_class.get_address(lblUser.Text)
                 Dim fullname = check_class.getName(userId)
                 check_class.mail(invoice, date_time, fullname, address, mail, key)
                 Dim order_detail As New order_detail()
@@ -106,7 +108,7 @@ Public Class store
                 order_detail.Show()
                 lbOrders.Items.Clear()
             Else
-                Dim msg = MessageBox.Show("Payment information was not found!" & vbNewLine & " Would you like to add payment information?", "Payment Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim msg = MessageBox.Show("Payment information was not found!" & vbNewLine & "Would you like to add payment information?", "Payment Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If msg = DialogResult.Yes Then
                     Dim validate As New credit_validate()
                     validate.txt_user = txt_user
@@ -130,8 +132,32 @@ Public Class store
         Dim key As String
         For i As Integer = 0 To lbOrders.Items.Count() - 1
             Dim str As String = lbOrders.Items(i)
-            game_name = str.Split(" "c)(0)
-            game_price = str.Split(" "c)(2)
+            Dim count = check_class.CountCharacter(str, " "c)
+
+            If count = 8 Then
+                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3) + " " + str.Split(" "c)(4) + " " + str.Split(" "c)(5) + " " + str.Split(" "c)(6)
+                game_price = str.Split(" "c)(8)
+            ElseIf count = 7 Then
+                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3) + " " + str.Split(" "c)(4) + " " + str.Split(" "c)(5)
+                game_price = str.Split(" "c)(7)
+            ElseIf count = 6 Then
+                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3) + " " + str.Split(" "c)(4)
+                game_price = str.Split(" "c)(6)
+            ElseIf count = 5 Then
+                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3)
+                game_price = str.Split(" "c)(5)
+            ElseIf count = 4 Then
+                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2)
+                game_price = str.Split(" "c)(4)
+            ElseIf count = 3 Then
+                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1)
+                game_price = str.Split(" "c)(3)
+            ElseIf count = 2 Then
+                game_name = str.Split(" "c)(0)
+                game_price = str.Split(" "c)(2)
+            End If
+
+
             If i = lbOrders.Items.Count() - 1 Then
                 order_name += game_name
                 key = check_class.get_cdKey()

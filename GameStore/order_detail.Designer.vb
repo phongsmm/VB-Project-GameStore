@@ -44,10 +44,10 @@ Partial Class order_detail
         'lblUser
         '
         Me.lblUser.AutoSize = True
-        Me.lblUser.Font = New System.Drawing.Font("Sitka Text", 26.25!)
-        Me.lblUser.Location = New System.Drawing.Point(126, 60)
+        Me.lblUser.Font = New System.Drawing.Font("Segoe MDL2 Assets", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUser.Location = New System.Drawing.Point(105, 65)
         Me.lblUser.Name = "lblUser"
-        Me.lblUser.Size = New System.Drawing.Size(182, 50)
+        Me.lblUser.Size = New System.Drawing.Size(129, 35)
         Me.lblUser.TabIndex = 1
         Me.lblUser.Text = "username"
         '
@@ -178,10 +178,10 @@ Partial Class order_detail
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Sitka Text", 26.25!)
-        Me.Label1.Location = New System.Drawing.Point(26, 60)
+        Me.Label1.Font = New System.Drawing.Font("Segoe MDL2 Assets", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(25, 65)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(109, 50)
+        Me.Label1.Size = New System.Drawing.Size(74, 35)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Hello"
         '
