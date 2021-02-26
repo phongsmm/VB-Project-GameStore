@@ -72,15 +72,19 @@ Public Class store
         End If
 
     End Sub
+    Dim price_list As New ArrayList()
 
     Private Sub DataGridView1_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles DataGridView1.MouseDoubleClick
         Dim g_name = DataGridView1.CurrentRow.Cells(0).Value
         Dim g_price = DataGridView1.CurrentRow.Cells(1).Value
-        Dim order = g_name + " x1 " + CStr(g_price)
+        Dim order = g_name
+
+        price_list.Add(g_price)
         lbOrders.Items.Add(order)
     End Sub
 
     Private Sub lbOrders_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lbOrders.MouseDoubleClick
+        price_list.RemoveAt(lbOrders.SelectedIndex)
         lbOrders.Items.RemoveAt(lbOrders.SelectedIndex)
     End Sub
 
@@ -89,17 +93,20 @@ Public Class store
         Dim check_credit = check_class.checK_credit(lblUser.Text)
         Dim invoice = check_class.random_invoice()
         Dim game = order_name
-        Dim price = order_price
         Dim date_time = DateTime.Now
         Dim key = order_key
         Dim mail = check_class.get_email(lblUser.Text)
         Dim userId = check_class.get_userId(lblUser.Text)
+        Dim sum As Integer = 0
+        For Each num In price_list
+            sum += num
+        Next
         If lbOrders.Items.Count > 0 Then
             order_name = ""
             order_key = ""
             order_price = 0
             If check_credit = True Then
-                check_class.insert_order(invoice, game, key, price, date_time, mail, userId)
+                check_class.insert_order(invoice, game, key, sum, date_time, mail, userId)
                 Dim address = check_class.get_address(lblUser.Text)
                 Dim fullname = check_class.getName(userId)
                 check_class.mail(invoice, date_time, fullname, address, mail, key)
@@ -132,31 +139,7 @@ Public Class store
         Dim key As String
         For i As Integer = 0 To lbOrders.Items.Count() - 1
             Dim str As String = lbOrders.Items(i)
-            Dim count = check_class.CountCharacter(str, " "c)
-
-            If count = 8 Then
-                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3) + " " + str.Split(" "c)(4) + " " + str.Split(" "c)(5) + " " + str.Split(" "c)(6)
-                game_price = str.Split(" "c)(8)
-            ElseIf count = 7 Then
-                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3) + " " + str.Split(" "c)(4) + " " + str.Split(" "c)(5)
-                game_price = str.Split(" "c)(7)
-            ElseIf count = 6 Then
-                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3) + " " + str.Split(" "c)(4)
-                game_price = str.Split(" "c)(6)
-            ElseIf count = 5 Then
-                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2) + " " + str.Split(" "c)(3)
-                game_price = str.Split(" "c)(5)
-            ElseIf count = 4 Then
-                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1) + " " + str.Split(" "c)(2)
-                game_price = str.Split(" "c)(4)
-            ElseIf count = 3 Then
-                game_name = str.Split(" "c)(0) + " " + str.Split(" "c)(1)
-                game_price = str.Split(" "c)(3)
-            ElseIf count = 2 Then
-                game_name = str.Split(" "c)(0)
-                game_price = str.Split(" "c)(2)
-            End If
-
+            game_name = str
 
             If i = lbOrders.Items.Count() - 1 Then
                 order_name += game_name
@@ -175,8 +158,6 @@ Public Class store
                 key = check_class.get_cdKey()
                 order_key += key + ","
             End If
-
-            order_price += CDbl(game_price)
         Next
     End Function
 
