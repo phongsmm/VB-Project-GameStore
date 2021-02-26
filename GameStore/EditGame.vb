@@ -107,7 +107,4 @@ VALUES (@name, @cat, @price)"
         End If
     End Sub
 
-    Private Sub tb_cat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tb_cat.SelectedIndexChanged
-
-    End Sub
 End Class

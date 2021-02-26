@@ -32,9 +32,7 @@ GROUP BY country;"
         cmd2.CommandText = "SELECT category , count(category) As `Count` FROM game
 GROUP BY category;"
         cmd3.Connection = conn
-        cmd3.CommandText = " SELECT game , count(game) As `Count` FROM orders
-GROUP BY game; 
-"
+        cmd3.CommandText = " SELECT game FROM orders"
         Dim adapter1 As New SQLiteDataAdapter(Sql1, conn)
         Dim adapter2 As New SQLiteDataAdapter(Sql2, conn)
         Dim reader1 As SQLiteDataReader = cmd1.ExecuteReader()
@@ -48,6 +46,8 @@ GROUP BY game;
 
         DataGridView1.DataSource = table1.Tables(0)
         DataGridView2.DataSource = table2.Tables(0)
+
+
 
         Chart1.Series("People").Points.Clear()
         Chart2.Series("Game").Points.Clear()
@@ -66,10 +66,28 @@ GROUP BY game;
 
         End While
 
+        Dim Game_list As New Dictionary(Of String, Integer)
+
+
         While reader3.Read()
-            Chart3.Series("Order").Points.AddXY(reader3.GetValue(0), reader3.GetValue(1))
+
+            Dim Orders As String = reader3.GetValue(0)
+            Dim Games As String() = Orders.Split(",")
+
+            For Each i In Games
+                If Not Game_list.ContainsKey(i) Then
+                    Game_list.Add(i, 0)
+                Else
+                    Game_list(i) += 1
+                End If
+            Next
 
         End While
+
+        For Each pair As KeyValuePair(Of String, Integer) In Game_list
+            Chart3.Series("Order").Points.AddXY(pair.Key, pair.Value)
+        Next
+
 
 
         conn.Close()
@@ -96,5 +114,6 @@ GROUP BY game;
         edit.ShowDialog()
         Admin_Load(sender, e)
     End Sub
+
 
 End Class
