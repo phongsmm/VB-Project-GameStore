@@ -35,7 +35,7 @@ Public Class register
     End Function
 
     Function EmailAddressCheck(emailAddress As String) As Boolean
-        Dim pattern As String = "^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$"
+        Dim pattern As String = "^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$"
         Dim emailAddressMatch As Match = Regex.Match(emailAddress, pattern)
         If emailAddressMatch.Success Then
             EmailAddressCheck = True

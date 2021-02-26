@@ -44,10 +44,4 @@ Public Class order_detail
         Me.Close()
     End Sub
 
-<<<<<<< HEAD
-=======
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
-
-    End Sub
->>>>>>> 0cfd7f241b17ea97594161747c7f4de79fadea7e
 End Class
