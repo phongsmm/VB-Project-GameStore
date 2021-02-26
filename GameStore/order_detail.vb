@@ -3,7 +3,7 @@ Public Class order_detail
     Public Property txt_user As String
     Dim check_class As New check_class
     Dim dbpath = Application.StartupPath
-    Dim dbname = "data.db"
+    Dim dbname = "Data.db"
     Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
     Dim conn As New SQLiteConnection(constr)
     Private Sub order_detail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -44,4 +44,10 @@ Public Class order_detail
         Me.Close()
     End Sub
 
+<<<<<<< HEAD
+=======
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+>>>>>>> 0cfd7f241b17ea97594161747c7f4de79fadea7e
 End Class

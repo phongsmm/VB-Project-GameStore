@@ -69,8 +69,7 @@ WHERE id = '{0}'
             Dim cmd As New SQLiteCommand
             cmd.Connection = conn
             cmd.CommandText = String.Format("
-UPDATE game
-SET game = @name, category = @cat , price = @price
+DELETE FROM game
 WHERE id = '{0}'
 ", id)
             cmd.ExecuteNonQuery()
@@ -108,7 +107,4 @@ VALUES (@name, @cat, @price)"
         End If
     End Sub
 
-    Private Sub tb_cat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tb_cat.SelectedIndexChanged
-
-    End Sub
 End Class
