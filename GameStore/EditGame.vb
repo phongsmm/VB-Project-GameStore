@@ -69,8 +69,7 @@ WHERE id = '{0}'
             Dim cmd As New SQLiteCommand
             cmd.Connection = conn
             cmd.CommandText = String.Format("
-UPDATE game
-SET game = @name, category = @cat , price = @price
+DELETE FROM game
 WHERE id = '{0}'
 ", id)
             cmd.ExecuteNonQuery()

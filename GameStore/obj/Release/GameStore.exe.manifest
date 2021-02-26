@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GameStore.exe" size="3164120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GameStore.exe" size="3164632">
       <assemblyIdentity name="GameStore" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ry/H7068eiiteIctTXYVdo8jcZ4Ly+UjakjYszi1sf8=</dsig:DigestValue>
+        <dsig:DigestValue>ysWyzlu6bEtSJcAnv6YfuTodnPW7gvUF/IUqiBtMtFs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
