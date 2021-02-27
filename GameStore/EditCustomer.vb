@@ -6,7 +6,6 @@ Public Class EditCustomer
     Public username As String
     Public password As String
     Public privilege As String
-
     Dim dbpath = Application.StartupPath
     Dim dbname = "Data.db"
     Dim constr As String = String.Format("Data Source = {0}", System.IO.Path.Combine(dbpath, dbname))
@@ -27,6 +26,7 @@ Public Class EditCustomer
     Private Sub EditCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tb_name.Text = username
         tb_pass.Text = password
+
         tb_p.Text = privilege
 
     End Sub
@@ -36,14 +36,27 @@ Public Class EditCustomer
             conn.Open()
             Dim cmd As New SQLiteCommand
             cmd.Connection = conn
-            cmd.CommandText = String.Format("
+            If MetroCheckBox1.Checked Then
+                cmd.CommandText = String.Format("
 UPDATE credentials
 SET username = @username, password = @password , privilege = @privilege
 WHERE username = '{0}'
 ", username)
-            cmd.Parameters.AddWithValue("@username", tb_name.Text)
-            cmd.Parameters.AddWithValue("@password", MD5(tb_pass.Text))
-            cmd.Parameters.AddWithValue("@privilege", tb_p.Text)
+                cmd.Parameters.AddWithValue("@username", tb_name.Text)
+                cmd.Parameters.AddWithValue("@password", MD5(tb_pass.Text))
+                cmd.Parameters.AddWithValue("@privilege", tb_p.Text)
+            Else
+                cmd.CommandText = String.Format("
+UPDATE credentials
+SET username = @username,privilege = @privilege
+WHERE username = '{0}'
+", username)
+                cmd.Parameters.AddWithValue("@username", tb_name.Text)
+                cmd.Parameters.AddWithValue("@privilege", tb_p.Text)
+
+            End If
+
+
 
             cmd.ExecuteNonQuery()
             conn.Close()
@@ -74,5 +87,17 @@ WHERE username = '{0}'
         End If
 
 
+    End Sub
+
+    Private Sub MetroCheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles MetroCheckBox1.CheckedChanged
+
+        If MetroCheckBox1.Checked Then
+            tb_pass.Enabled = True
+            tb_pass.Text = ""
+        Else
+            tb_pass.Text = password
+            tb_pass.Enabled = False
+
+        End If
     End Sub
 End Class

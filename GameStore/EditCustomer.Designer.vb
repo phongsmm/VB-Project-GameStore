@@ -31,6 +31,7 @@ Partial Class EditCustomer
         Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
         Me.MetroLabel2 = New MetroFramework.Controls.MetroLabel()
         Me.MetroLabel3 = New MetroFramework.Controls.MetroLabel()
+        Me.MetroCheckBox1 = New MetroFramework.Controls.MetroCheckBox()
         Me.SuspendLayout()
         '
         'tb_name
@@ -77,11 +78,12 @@ Partial Class EditCustomer
         Me.tb_pass.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light
         Me.tb_pass.CustomButton.UseSelectable = True
         Me.tb_pass.CustomButton.Visible = False
+        Me.tb_pass.Enabled = False
         Me.tb_pass.Lines = New String(-1) {}
         Me.tb_pass.Location = New System.Drawing.Point(48, 140)
         Me.tb_pass.MaxLength = 32767
         Me.tb_pass.Name = "tb_pass"
-        Me.tb_pass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.tb_pass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.tb_pass.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.tb_pass.SelectedText = ""
         Me.tb_pass.SelectionLength = 0
@@ -175,11 +177,22 @@ Partial Class EditCustomer
         Me.MetroLabel3.TabIndex = 7
         Me.MetroLabel3.Text = "Privilege"
         '
+        'MetroCheckBox1
+        '
+        Me.MetroCheckBox1.AutoSize = True
+        Me.MetroCheckBox1.Location = New System.Drawing.Point(116, 121)
+        Me.MetroCheckBox1.Name = "MetroCheckBox1"
+        Me.MetroCheckBox1.Size = New System.Drawing.Size(117, 15)
+        Me.MetroCheckBox1.TabIndex = 8
+        Me.MetroCheckBox1.Text = "Change Password"
+        Me.MetroCheckBox1.UseSelectable = True
+        '
         'EditCustomer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(303, 434)
+        Me.Controls.Add(Me.MetroCheckBox1)
         Me.Controls.Add(Me.MetroLabel3)
         Me.Controls.Add(Me.MetroLabel2)
         Me.Controls.Add(Me.MetroLabel1)
@@ -205,4 +218,5 @@ Partial Class EditCustomer
     Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
     Friend WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
     Friend WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
+    Friend WithEvents MetroCheckBox1 As MetroFramework.Controls.MetroCheckBox
 End Class
