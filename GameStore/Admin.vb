@@ -88,7 +88,9 @@ GROUP BY category;"
             Chart3.Series("Order").Points.AddXY(pair.Key, pair.Value)
         Next
 
-
+        Chart1.Series("People").ToolTip = "#VALX , #VAL"
+        Chart2.Series("Game").ToolTip = "#VALX , #VAL"
+        Chart3.Series("Order").ToolTip = "#VALX , #VAL"
 
         conn.Close()
 
