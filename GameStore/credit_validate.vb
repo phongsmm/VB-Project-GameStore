@@ -7,6 +7,8 @@ Public Class credit_validate
     Dim conn As New SqliteConnection(constr)
     Dim check_class As New check_class
     Private Sub validate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DateTimePicker1.CustomFormat = " MM, yyyy"
+        DateTimePicker1.Format = DateTimePickerFormat.Custom
         lblUser.Text = txt_user
         cboCountry.SelectedIndex = 0
         DateTimePicker1.MinDate = DateTime.Now

@@ -78,7 +78,6 @@ Public Class store
         Dim g_name = DataGridView1.CurrentRow.Cells(0).Value
         Dim g_price = DataGridView1.CurrentRow.Cells(1).Value
         Dim order = g_name
-
         price_list.Add(g_price)
         lbOrders.Items.Add(order)
     End Sub
